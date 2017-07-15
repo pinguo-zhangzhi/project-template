@@ -1,0 +1,13 @@
+{
+    "presets": [
+        "es2015"
+    ],
+    "plugins": [
+        "add-module-exports", ["antd", { "style": "css" }],
+        ["import", {
+            "libraryName": "antd",
+            "libraryDirectory": "lib", // default: lib 
+            "style": true
+        }],
+    ]
+}
