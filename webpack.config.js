@@ -1,16 +1,6 @@
 const path = require('path');
-const proxy = require('./server/webpack-dev-proxy');
 const loaders = require('./webpack/loaders');
 const plugins = require('./webpack/plugins');
-const postcssInit = require('./webpack/postcss');
-
-const baseAppEntries = ['./src/index.tsx'];
-const devAppEntries = [
-    'webpack-dev-server/client?http://localhost:3001', // WebpackDevServer host and port
-    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors]
-];
-const appEntries = baseAppEntries
-    .concat(process.env.NODE_ENV === 'development' ? devAppEntries : []);
 
 // FIXME: change next line if you don't want publish to gh-pages
 const publicPath = process.env.PUBLIC_PATH === 'gh' ?
@@ -30,8 +20,8 @@ const vendor = [
 ];
 module.exports = {
     entry: {
-        app: appEntries,
         vendor,
+        app: ['./src/index.tsx'],
     },
 
     output: {
@@ -48,11 +38,9 @@ module.exports = {
 
     devServer: {
         historyApiFallback: { index: '/' },
-        proxy: Object.assign({}, proxy(), { '/api/*': 'http://localhost:3000' }),
     },
 
     module: {
-        //preLoaders: [ loaders.tslint,],
         rules: [
             loaders.tsx,
             loaders.html,
@@ -64,15 +52,6 @@ module.exports = {
             loaders.woff2,
             loaders.ttf,
         ],
-
-        /*
-        rules: [{
-            test: /\.tsx?$/,
-            use: 'awesome-typescript-loader', //ts-loader',
-            exclude: /node_modules/
-        }],
-          */
     },
 
-    //  postcss: postcssInit,
 }
