@@ -19,6 +19,7 @@ import 'antd/dist/antd.css'
 console.log('React',React)
 console.log('ReactDOM',ReactDOM)
 console.log('History',History)
+
 const store = configureStore({})
 const history = syncHistoryWithStore(createHistory(), store)
 import defaultRoutes from './routes'
