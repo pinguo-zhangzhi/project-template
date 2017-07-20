@@ -14,7 +14,7 @@ import configureStore from './store/configure-store'
 
 // Global styles
 import './styles/index.css'
-// import 'antd/dist/antd.css'
+import 'antd/dist/antd.css'
 
 console.log('React',React)
 console.log('ReactDOM',ReactDOM)
